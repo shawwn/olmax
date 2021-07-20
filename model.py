@@ -48,8 +48,8 @@ class Context:
         self.dtype = jnp.float32
         self.init_scale = 1.0
         self.global_prefix = ''
-        self.model_parallel = 1
-        self.data_parallel = 8
+        self.model_parallel = 8
+        self.data_parallel = 1
         self.name_cache: typing.Dict[str, int] = {}
         self.masked_attention = False
         self.print_interval = 1
