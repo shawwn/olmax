@@ -34,7 +34,9 @@ def decoder(int_string: bool, data: tf.Tensor, ctx: int):
 def text_dataset(ctx: Context) -> NumpyIterator:
     filenames = tf.io.gfile.glob(ctx.data.path)
 
-    dset = tf.data.Dataset.from_tensor_slices(filenames).repeat()
+    dset = tf.data.Dataset.from_tensor_slices(filenames)
+    dset = dset.shuffle(len(filenames))
+    dset = dset.repeat()
     sequence_length = ctx.dims.dim_sizes[ctx.dims.sequence]
     batch_size = ctx.dims.dim_sizes[ctx.dims.batch]
     device_steps = ctx.device_steps
